@@ -48,6 +48,7 @@ import {
 } from "./constants";
 import MSTeamsProvider from "./ms-teams-provider";
 import SlackProvider from "./slack-provider";
+import WhatsAppProvider from "./whatsapp-provider";
 import { errorMessage, isSlackDmChannel } from "./utils";
 
 /**
@@ -57,6 +58,7 @@ import { errorMessage, isSlackDmChannel } from "./utils";
 export class ChatOpsManager {
   private msTeamsProvider: MSTeamsProvider | null = null;
   private slackProvider: SlackProvider | null = null;
+  private whatsappProvider: WhatsAppProvider | null = null;
   private cleanupInterval: ReturnType<typeof setInterval> | null = null;
   private readonly a2aManager: A2AManager;
 
@@ -82,6 +84,8 @@ export class ChatOpsManager {
         return this.getMSTeamsProvider();
       case "slack":
         return this.getSlackProvider();
+      case "whatsapp":
+        return this.whatsappProvider;
     }
   }
 
